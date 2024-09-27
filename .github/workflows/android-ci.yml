@@ -61,7 +61,7 @@ jobs:
         run: ls -l app/build/outputs/apk/debug/
 
       - name: Send APK to Telegram
-        if: ${{ secrets.SHARE_APK_TO_TELEGRAM == 'true' }}
+#        if: ${{ secrets.SHARE_APK_TO_TELEGRAM == 'true' }}
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
