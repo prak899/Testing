@@ -63,5 +63,5 @@ jobs:
         #          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           curl -F chat_id=678198404 \
-               -F document=@app-debug.apk \
+               -F document=@app/build/outputs/apk/debug/app-debug.apk \
                https://api.telegram.org/bot7623771463:AAGiUfZUvQUuCztmXOZERRXgKe-k-7cd9Z4/sendDocument
