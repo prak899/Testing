@@ -3,7 +3,7 @@ name: Build Debug APK and Share on Telegram
 on:
   push:
     branches:
-      - master
+      - telegram
 
 jobs:
   build:
@@ -65,7 +65,8 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
+        if: ${{ secrets.SHARE_APK_TO_TELEGRAM == 'true' }}
         run: |
-          curl -F chat_id=TELEGRAM_CHAT_ID \
+          curl -F chat_id=$TELEGRAM_CHAT_ID \
                -F document=@app/build/outputs/apk/debug/app-debug.apk \
                https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendDocument
