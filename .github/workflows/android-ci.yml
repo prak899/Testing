@@ -1,4 +1,4 @@
-name: Build Debug APK
+name: Build Debug APK and Share on Telegram
 
 on:
   push:
@@ -34,6 +34,12 @@ jobs:
       - name: Build Debug APK
         run: ./gradlew assembleDebug
 
+      - name: Check APK existence
+        run: ls -l app/build/outputs/apk/debug
+
+      - name: Set APK permissions
+        run: chmod +r app/build/outputs/apk/debug/app-debug.apk
+
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
@@ -52,9 +58,9 @@ jobs:
           path: app-debug.apk
 
       - name: Send APK to Telegram
-#        env:
-#          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-#          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        #env:
+        #          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        #          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           curl -F chat_id=678198404 \
                -F document=@app-debug.apk \
