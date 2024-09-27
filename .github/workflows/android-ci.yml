@@ -1,4 +1,4 @@
-name: Build Debug APK and Share on Telegram
+name: Build Debug APK
 
 on:
   push:
@@ -28,6 +28,9 @@ jobs:
           key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: gradle-${{ runner.os }}
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
       - name: Build Debug APK
         run: ./gradlew assembleDebug
 
@@ -37,16 +40,16 @@ jobs:
           name: debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
 
-  notify:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download APK
-        uses: actions/download-artifact@v3
-        with:
-          name: debug-apk
-          path: app-debug.apk
+#  notify:
+#    needs: build
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Download APK
+#        uses: actions/download-artifact@v3
+#        with:
+#          name: debug-apk
+#          path: app-debug.apk
 #
 #      - name: Send APK to Telegram
 #        env:
