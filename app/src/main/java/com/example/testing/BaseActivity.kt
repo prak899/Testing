@@ -16,4 +16,5 @@ open class BaseActivity : AppCompatActivity() {
         }
         super.onWindowFocusChanged(hasFocus)
     }
+    //test v-ac1.0.0
 }
