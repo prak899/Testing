@@ -3,7 +3,7 @@ name: Build Debug APK and Share on Telegram
 on:
   push:
     branches:
-      - master
+      - telegram
 
 jobs:
   build:
@@ -61,11 +61,15 @@ jobs:
         run: ls -l app/build/outputs/apk/debug/
 
       - name: Send APK to Telegram
+#        if: ${{ secrets.SHARE_APK_TO_TELEGRAM == 'true' }}
+        #        if: ${{ secrets.SHARE_APK_TO_TELEGRAM == 'true' }}
+
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
+        if: contains(github.event.head_commit.message, 'SHARE_APK')
         run: |
-          curl -F chat_id=TELEGRAM_CHAT_ID \
+          curl -F chat_id=$TELEGRAM_CHAT_ID \
                -F document=@app/build/outputs/apk/debug/app-debug.apk \
                https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendDocument
