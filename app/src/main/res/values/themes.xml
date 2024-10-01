@@ -6,4 +6,15 @@
     </style>
 
     <style name="Theme.Testing" parent="Base.Theme.Testing" />
+
+    <style name="ExpandedAppBar" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <!-- Style for collapsed title text -->
+    <style name="CollapsedAppBar" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
 </resources>
