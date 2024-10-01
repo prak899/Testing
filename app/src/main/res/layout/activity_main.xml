@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".kotlin_activity.MainActivity">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="@drawable/half_circle"
+        tools:ignore="MissingConstraints" />
+
     <LinearLayout
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"

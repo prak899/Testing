@@ -32,7 +32,7 @@ class MainActivity : BaseActivity() {
         }
 
         recyclerView = findViewById(R.id.recyclerView)
-        val dummyData = MutableList(20) { "Item $it" }
+        val dummyData = MutableList(20*20) { "Item $it" }
         adapter = ListAdapter(dummyData)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -45,6 +45,9 @@ class MainActivity : BaseActivity() {
                 actionMode?.finish()
             }
         }
+
+
+
     }
 
     private val actionModeCallback = object : ActionMode.Callback {
