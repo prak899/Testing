@@ -1,6 +1,4 @@
-package com.zsing.barchart
-
-
+package com.example.testing
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -47,15 +45,16 @@ class BarChartView @JvmOverloads constructor(
 
     // Zooming feature
     private var scaleFactor = 1f
-    private val scaleGestureDetector = ScaleGestureDetector(context, object : ScaleGestureDetector.SimpleOnScaleGestureListener() {
-        override fun onScale(detector: ScaleGestureDetector): Boolean {
-            // Adjust zoom only for the data area
-            scaleFactor *= detector.scaleFactor
-            scaleFactor = scaleFactor.coerceIn(1f, 3f) // Limit zoom from 1x to 3x
-            invalidate()
-            return true
-        }
-    })
+    private val scaleGestureDetector =
+        ScaleGestureDetector(context, object : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+            override fun onScale(detector: ScaleGestureDetector): Boolean {
+                // Adjust zoom only for the data area
+                scaleFactor *= detector.scaleFactor
+                scaleFactor = scaleFactor.coerceIn(1f, 3f) // Limit zoom from 1x to 3x
+                invalidate()
+                return true
+            }
+        })
 
     // Set data dynamically
     fun setData(newData: List<Int>, newLabels: List<String>) {
@@ -97,7 +96,8 @@ class BarChartView @JvmOverloads constructor(
         // Draw Y-axis labels (100 to 500) and grid lines
         val step = 100  // Interval for Y-axis labels
         for (i in minValue..maxValue step step) {
-            val yPosition = height - padding - labelOffset - ((i.toFloat() - minValue) / (maxValue - minValue)) * (height - padding - labelOffset - topPadding)
+            val yPosition =
+                height - padding - labelOffset - ((i.toFloat() - minValue) / (maxValue - minValue)) * (height - padding - labelOffset - topPadding)
             // Draw the Y-axis labels
             canvas.drawText(i.toString(), leftPadding - 10f, yPosition + 10f, axisPaint)
             // Draw grid lines for clarity
@@ -111,9 +111,11 @@ class BarChartView @JvmOverloads constructor(
 
         for ((index, value) in animatedHeights.withIndex()) {
             // Set bar color based on condition (e.g., value > 200)
-            barPaint.color = if (value > 200) Color.GREEN else Color.RED  // Bar color based on value
+            barPaint.color =
+                if (value > 200) Color.GREEN else Color.RED  // Bar color based on value
 
-            val barHeight = (value.toFloat() / maxValue) * (height - padding - labelOffset - topPadding)
+            val barHeight =
+                (value.toFloat() / maxValue) * (height - padding - labelOffset - topPadding)
             val left = index * (barWidth * 2) + 40f  // Offset the bars for spacing
             val top = (height - padding - labelOffset - barHeight - topPadding) / scaleFactor
             val right = left + barWidth
