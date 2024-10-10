@@ -43,10 +43,18 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/layout_item" />
+
+    <com.example.testing.BarChartView
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:id="@+id/barChartView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

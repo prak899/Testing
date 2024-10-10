@@ -19,6 +19,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.zsing.barchart.BarChartView
 import com.example.testing.BaseActivity
 import com.example.testing.R
 import com.example.testing.java_activity.MainActivity
@@ -48,10 +49,17 @@ class MainActivity : BaseActivity() {
         topAppBar.title = "Dashboard"
         setSupportActionBar(topAppBar)
 
+        val barChartView = findViewById<com.zsing.barchart.BarChartView>(R.id.barChartView)
 
+        // Example data and labels
+        val dataSet = listOf(100, 200, 300, 400, 450, 150, 260)
+        val labels = listOf("Top1", "Top10", "Top20", "Top30", "Top40", "Top50", "Top100")
+
+        // Set the data and labels for the chart
+        barChartView.setData(dataSet, labels)
 
         val collapsingToolbarLayout: CollapsingToolbarLayout = findViewById(R.id.collapsingToolbar)
-//        collapsingToolbarLayout.title = "Collapsing Toolbar Example"
+        // collapsingToolbarLayout.title = "Collapsing Toolbar Example"
         // Enable the back button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)

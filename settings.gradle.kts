@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Testing"
 include(":app")
- 
+include(":app:barchartlibrary")
